@@ -1,2 +1,6 @@
 .djvenv
 sandbox/__pycache__
+blog/migrations/__pycache__
+blog/__pycache__
+blog/migrations
+db.sqlite3
