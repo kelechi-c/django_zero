@@ -1,6 +1,12 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset()\
+            .filter(status=Post.Status.PUBLISHED)
     
 class Post(models.Model):
     class Status(models.TextChoices):
@@ -19,6 +25,8 @@ class Post(models.Model):
         choices=Status.choices,
         default=Status.DRAFT
     )
+    objects = models.Manager()
+    published = PublishedManager()
     
     class Meta:
         ordering = ['-publish']
@@ -28,5 +36,4 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title                                                   
-    
     
