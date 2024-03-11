@@ -6,6 +6,12 @@
  <p class="date">
  Published {{ post.publish }} by {{ post.author }}
  </p>
- {{ post.post_body }}
+ {{ post.post_body | linebreaks }}
+
+ <p>
+    <a href="{% url "blog:post_share" post.id %}">
+    Share this post
+    </a>
+    </p>
 
 {% endblock %}
